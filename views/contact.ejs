@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet'>
+    <link rel="shortcut icon" type="/png" href="/res/logo.jpg"/>
+    <title>NRTC.com</title>
+
+</head>
+<body style="font-family: 'Abel';font-size: 22px;">
+
+<div style="margin-bottom: -18px;" class="w3-animate-top">
+    <div class="w3-bar w3-white w3-border w3-card-4 w3-padding-32">
+        <img src="/res/NRTCb.png" style="width:220px; height: 110px; margin:-30px 30px" alt="" >
+        <a href="contact" class="w3-bar-item w3-button w3-hide-medium w3-hide-small w3-right w3-hover-light-grey  w3-hover-text-brown w3-brown ">Contact Us</a>
+
+        <div class="w3-dropdown-hover w3-right w3-hide-medium w3-hide-small">
+            <button class="w3-button">Our Research <i class="fa fa-caret-down"></i></button>
+            <div class="w3-dropdown-content w3-bar-block w3-card-4 w3-animate-opacity">
+                <a href="fundedResearch" class="w3-bar-item w3-button">Funded Research</a>
+                <a href="studentResearch" class="w3-bar-item w3-button">Student Research</a>
+            </div>
+        </div>
+        <a href="training" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-light-grey  w3-hover-text-brown ">Training</a>
+        <a href="news" class="w3-bar-item w3-button w3-hide-medium w3-hide-small w3-right w3-hover-light-grey   w3-hover-text-brown  ">News & Opportunities</a>
+        <a href="gallery" class="w3-bar-item w3-button w3-hide-medium w3-hide-small w3-right w3-hover-light-grey   w3-hover-text-brown  ">Gallery</a>
+        <a href="about" class="w3-bar-item w3-button w3-hide-medium w3-hide-small w3-right w3-hover-light-grey   w3-hover-text-brown  ">About Us</a>
+        <a href="/" class="w3-bar-item w3-button w3-hide-medium w3-hide-small w3-hover-light-grey  w3-right  w3-hover-text-brown ">Home</a>
+        <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large " onclick="myFunction()">&#9776;</a>
+    </div>
+    <div id="demo" class="w3-bar-block w3-hide w3-hide-large  " style="position: absolute; background:#a87037; z-index: 1; margin-top:0px; width:100%;" >
+        <a href="/" class="w3-bar-item w3-button ">Home</a>
+        <a href="about" class="w3-bar-item w3-button ">About Us</a>
+        <a href="gallery" class="w3-bar-item w3-button  ">Gallery</a>
+
+        <a href="news" class="w3-bar-item w3-button ">News & Opportunities</a>
+
+        <a href="training" class="w3-bar-item w3-button ">Training</a>
+        <div class="w3-dropdown-hover  w3-mobile" style="padding:-60px 0px;">
+            <button class="w3-button">Our Research <i class="fa fa-caret-down"></i></button>
+            <div class="w3-dropdown-content w3-bar-block w3-card-4 w3-animate-opacity">
+                <a href="fundedResearch" class="w3-bar-item w3-button">Funded Research</a>
+                <a href="studentResearch" class="w3-bar-item w3-button">Student Research</a>
+            </div>
+        </div>
+
+        <a href="contact" class="w3-bar-item w3-button w3-brown">Contact Us</a>
+    </div>
+</div>
+
+
+<div class="w3-content w3-display-container"></div>
+<div class="w3-content w3-section w3-hide-small" style="max-width:100%;">
+    <img src="/res/contactus.jpg" style="width:100%; max-height: 550px; min-height: 390px; margin-top: 0px">
+    <div class="w3-padding w3-display-left w3-large w3-center" style="background:rgb(26, 2, 134); opacity:0.6;">
+        <h1 style="font-size:3.3em; font-style:oblique; color:#ff7300;
+                    line-height:1.0;">Contact
+            <span style=" color:#fff;">Us</span></h1>
+    </div>
+</div>
+
+<div class="w3-row-padding w3-margin-top " >
+    <div class="w3-half" style="flex-grow: 1; flex-basis: 350px; color:#000033;">
+        <h1>Get in Touch</h1>
+        <div style="color:#000033;"> <span  style=" color:#ff7300;" class="fa fa-phone"></span> +233 (0) 30 234 5858</div>
+        <div style="color:#000033; margin-bottom: 20px"><span style="padding: 0px 14px"></span> ugnrtc@ug.edu.gh</div>
+
+        <span style="color:#ff7300; margin-left:20px" class="fa fa-facebook" ></span>
+        <span style="color:#ff7300; margin-left:20px" class="fa fa-twitter"></span>
+        <span  style=" color:#ff7300; margin-left:20px"class="fa fa-linkedin"></span></div>
+    <div style="margin-bottom: 40px; width: 100%" ></div>
+    <div class="w3-half" style="flex-grow: 1;" >
+        <form action="/contact" method="POST">
+        <input type="text" placeholder="Name" name="name" class="w3-input" style=" margin:10px;">
+        <input type="text" placeholder="Email" name="email" class="w3-input" style=" margin:10px;">
+        <input type="text" placeholder="Phone" name="phone" class="w3-input" style=" margin:10px;">
+        <input type="message" placeholder="Message" name="message" class="w3-input" style=" margin:10px;">
+        <input type="submit" value="Submit" class="w3-button w3-block w3-section  w3-ripple w3-padding" style=" margin:10px;color:#fff;background:#000033;">
+        </form>
+    </div>
+ 
+</div>
+
+
+
+
+
+
+<% include ./partials/footer.ejs%>
+
+<script>
+    function myFunction() {
+        var x = document.getElementById("demo");
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+        } else {
+            x.className = x.className.replace(" w3-show", "");
+        }
+    }
+</script>
+
+</body>
+</html>

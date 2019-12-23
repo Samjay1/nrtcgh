@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet'>
+    <link rel="shortcut icon" type="/png" href="res/logo.jpg"/>
+    <title>NRTC.com</title>
+    <style type="css/text">
+       
+       </style>
+</head>
+<body style="font-family: 'Abel';font-size: 22px;"> 
+ 
+
+<div style="margin-bottom: -18px;" class="w3-animate-top">
+  <div class="w3-bar w3-white w3-border w3-card-4 w3-padding-32">
+      <img src="/res/NRTCb.png" style="width:220px; height: 110px; margin:-30px 30px" alt="" >
+      <a href="/contact" class="w3-bar-item w3-button w3-hide-medium w3-hide-small w3-right w3-hover-light-grey  w3-hover-text-brown  ">Contact Us</a>
+
+      <div class="w3-dropdown-hover w3-right w3-hide-medium w3-hide-small">
+          <button class="w3-button w3-brown ">Our Research <i class="fa fa-caret-down"></i></button>
+          <div class="w3-dropdown-content w3-bar-block w3-card-4 w3-animate-opacity">
+              <a href="/fundedResearch" class="w3-bar-item w3-button w3-brown">Funded Research</a>
+              <a href="/studentResearch" class="w3-bar-item w3-button">Student Research</a>
+          </div>
+      </div>
+      <a href="/training" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-light-grey  w3-hover-text-brown ">Training</a>
+      <a href="/news" class="w3-bar-item w3-button w3-hide-medium w3-hide-small w3-right w3-hover-light-grey   w3-hover-text-brown  ">News & Opportunities</a>
+      <a href="/gallery" class="w3-bar-item w3-button w3-hide-medium w3-hide-small w3-right w3-hover-light-grey   w3-hover-text-brown  ">Gallery</a>
+      <a href="/about" class="w3-bar-item w3-button w3-hide-medium w3-hide-small w3-right w3-hover-light-grey   w3-hover-text-brown">About Us</a>
+      <a href="/" class="w3-bar-item w3-button w3-hide-medium w3-hide-small w3-hover-light-grey  w3-right  w3-hover-text-brown ">Home</a>
+      <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large " onclick="myFunction()">&#9776;</a>
+  </div>
+  <div id="demo" class="w3-bar-block w3-hide w3-hide-large  " style="position: absolute; background:#a87037; z-index: 1; margin-top:0px; width:100%;" >
+      <a href="/" class="w3-bar-item w3-button ">Home</a>
+      <a href="/about" class="w3-bar-item w3-button ">About Us</a>
+      <a href="/gallery" class="w3-bar-item w3-button  ">Gallery</a>
+
+      <a href="/news" class="w3-bar-item w3-button ">News & Opportunities</a>
+
+      <a href="/training" class="w3-bar-item w3-button ">Training</a>
+      <div class="w3-dropdown-hover  w3-mobile" style="padding:-60px 0px;">
+          <button class="w3-button w3-brown">Our Research <i class="fa fa-caret-down"></i></button>
+          <div class="w3-dropdown-content w3-bar-block w3-card-4 w3-animate-opacity">
+              <a href="fundedResearch" class="w3-bar-item w3-button w3-brown">Funded Research</a>
+              <a href="studentResearch" class="w3-bar-item w3-button">Student Research</a>
+          </div>
+      </div>
+
+      <a href="/contact" class="w3-bar-item w3-button">Contact Us</a>
+  </div>
+</div>
+    
+   <div class="w3-margin"></div>
+    <div class="w3-container">
+            <h1 style="color:#000033;" class="w3-center w3-border-bottom w3-border-gray w3-xxlarge">Funded Research</h1>
+            
+        <div class="w3-margin" > 
+           <div class="w3-container">
+            The Centre provided office space for this project, as well as the use of the demonstration kitchen and conference
+             room (when available) for the project’s activities. </div>
+        </div>
+    </div>
+    
+    <!-- student research from database -->
+ <div class="w3-row">
+    
+  
+    <div class="w3-container" style="margin: 30px 2%"> 
+
+
+        <div >
+                <!-- first content -->
+                
+            <% data.forEach(function(one){%>
+ 
+           <div class="w3-card  w3-padding" style="margin-bottom: 5px;">
+            <header>
+                <div> <b>Title:</b> </div>
+              <span> <u><%= one.title%></u></span>  
+            </header>
+            <span> <b>Researcher:</b> </span>  <%=one.researcherName%> 
+            <hr>
+            
+            <div class="w3-container">
+                <span> <b>Summary:</b></span>
+                <%= one.message.slice(0, 450); %>... 
+                  
+                  <div>
+                       <a href= "/fundedResearch/<%= one.id %> "  class="w3-btn w3-border w3-teal">Read</a>
+                  </div>
+            </div>
+        </div>
+<%})%>
+    
+
+    </div>
+ 
+      </div>
+    </div>
+
+  
+
+    <% include ./partials/footer.ejs%>
+
+<script>
+      var myIndex = 0;
+      carousel();
+      
+      function carousel() {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        for (i = 0; i < x.length; i++) {
+          x[i].style.display = "none";  
+        }
+        myIndex++;
+        if (myIndex > x.length) {myIndex = 1}    
+        x[myIndex-1].style.display = "block";  
+        setTimeout(carousel, 4000); // Change image every 2 seconds
+      }
+      </script>
+      
+      <script>
+      function myFunction() {
+        var x = document.getElementById("demo");
+        if (x.className.indexOf("w3-show") == -1) {
+          x.className += " w3-show";
+        } else { 
+          x.className = x.className.replace(" w3-show", "");
+        }
+      }
+      var val = 0;
+      function showAll(show, btn){
+          
+          if(val == 0){
+            document.getElementById(show).style.display = "block";
+            document.getElementById(btn).innerHTML = "Show Less"
+            val = 1;
+          }
+          else if(val = 1){
+            document.getElementById(show).style.display = "none";
+            document.getElementById(btn).innerHTML = "Show More"
+            val = 0;
+          }
+
+         
+      }
+      </script>
+    
+</body>
+</html>
