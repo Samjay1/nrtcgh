@@ -330,24 +330,24 @@ app.post('/updateBlog', upload.single('file'),json,urlparser, (req,res) =>{
 
 //////////////////////////////////
     
-// image2base64(imagepath) // you can also to use url
-//     .then(
-//         (response) => {
-//             var new_response = "data:image/png;base64," + response;  
-//             var success = "News and Opportunity Page added..."
-//             newsOppmodel.create({title:btitle, message:bmessage, blogimage:new_response}, function (err, data){
-//                 if(err) throw err;
-//                 console.log(err)
-//             });
-//             res.render("success.ejs",{success});
+image2base64(imagepath) // you can also to use url
+    .then(
+        (response) => {
+            var new_response = "data:image/png;base64," + response;  
+            var success = "News and Opportunity Page added..."
+            newsOppmodel.create({title:btitle, message:bmessage, blogimage:new_response}, function (err, data){
+                if(err) throw err;
+                console.log(err)
+            });
+            res.render("success.ejs",{success});
 
-//         }
-//     )
-//     .catch(
-//         (error) => {
-//             console.log(error); //Exepection error....
-//         }
-//     )
+        }
+    )
+    .catch(
+        (error) => {
+            console.log(error); //Exepection error....
+        }
+    )
     //////////////////////
 
 
