@@ -1,0 +1,19 @@
+ #tiky {
+            font-size: 20px; 
+          }
+ #tiky2 {
+            font-size: 18px; 
+          }
+
+
+ @media screen and (max-width: 480px) {
+            #tiky {
+              font-size: 15px; 
+            }
+            #tiky2 {
+                font-size: 14px; 
+              }
+        }
+
+
+       
