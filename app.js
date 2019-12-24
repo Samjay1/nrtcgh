@@ -428,22 +428,35 @@ app.post('/fundedResearch', upload.single('file'), json,urlparser, (req,res) =>{
     var title = req.body.fundedTitle;
     var message = req.body.message;
     var researcher = req.body.researcher; 
-    var imagepath = "uploads/" + req.file.filename; 
+    var imagepath = req.file.path; 
 
+//////////////////////////////////
+    
+image2base64(imagepath) // you can also to use url
+    .then(
+        (response) => {
+            var new_response = "data:image/png;base64," + response;  
+            var success = "Funded Research Page added..."
+            fundedResearchmodel.create(
+                {title:title, 
+                 researcherName: researcher, 
+                 message:message,
+                 imagepath:new_response
+            }, function (err, data){
+                if(err) throw err;
+                console.log(err)
+            }); 
+            res.render("success.ejs",{success});
 
-    console.log(title, message, researcher);
+        }
+    )
+    .catch(
+        (error) => {
+            console.log(error); //Exepection error....
+        }
+    )
+    //////////////////////
 
-    var success = "Funded Research Page added..."
-    fundedResearchmodel.create(
-        {title:title, 
-         researcherName: researcher, 
-         message:message,
-         imagepath:imagepath
-    }, function (err, data){
-        if(err) throw err;
-        console.log(err,data)
-    }); 
-    res.render("success.ejs",{success});
     
 });
 
