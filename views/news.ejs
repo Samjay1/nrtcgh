@@ -77,7 +77,7 @@
     <div class="w3-half" style="flex-grow: 1;" >
         <div style="width:100%; min-height: 400px;">
             <h1 style="color:#000033;"><%= data.title%></h1>
-            <p><%= data.message %>...
+            <p><%= data.message.slice(0, 350); %>...
                 <br/>
                 <a href= "/news/<%= data.id %> "  class="w3-button w3-border w3-text-brown">Read More</a>
             </p>

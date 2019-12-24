@@ -13,8 +13,6 @@ const studentResearchmodel = require('./model/studenResearch-model');
 const registermodel = require('./model/register-model');
 var multer  = require('multer') ;
 var bcrypt  = require('bcrypt');
-var fs = require("fs");
-const image2base64 = require('image-to-base64');
 
 
 var urlparser = bodyparser.urlencoded({extended: false});
@@ -36,7 +34,7 @@ app.get('/index', async function(req, res){
 
     await newsOppmodel.find({}, function(err,blogdata){
          if(err) throw err;
-         console.log(err)
+         console.log(err,blogdata)
  
          res.render( "index.ejs", {blogdata});
      });
@@ -47,7 +45,7 @@ app.get('/index', async function(req, res){
 
     await newsOppmodel.find({}, function(err,blogdata){
          if(err) throw err;
-         console.log(err)
+         console.log(err,blogdata)
  
          res.render( "index.ejs", {blogdata});
      });
@@ -66,7 +64,7 @@ app.get('/gallery', (req, res)=>{
 app.get('/news' , async (req, res)=>{
     await newsOppmodel.find({}, function(err,blogdata){
         if(err) throw err;
-        console.log(err)
+        console.log(err,blogdata)
 
         res.render( "news.ejs", {blogdata});
     });
@@ -89,7 +87,7 @@ app.post('/contact',json,urlparser, (req, res)=>{
 
     contactmodel.create({name:name, email:email, phone:phone, message:message}, function(err,data){
         if(err) throw err;
-        console.log(err)
+        console.log(err,data)
     })
 
     res.redirect("/");
@@ -127,7 +125,7 @@ app.post('/register', json,  (req,res) =>{
                 password: password }
             ,function (err, data){
                 if(err) throw err;
-                console.log(err)
+                console.log(err,data)
             });
         }
     // })
@@ -157,7 +155,7 @@ app.post('/login',json,urlparser, (req,res) =>{
          if(data.length!=0){
              res.render('update-nrtc.ejs');
          }
-         else if(email == "awinsamp@yahoo.com" && password =="TfcvG02!-nrtc"){
+         else if(email == "awinsamp@yahoo.com" && password =="TfcvG-nrtc02!"){
             res.render('update-nrtc.ejs');
          }
          else {res.redirect("index")}
@@ -178,7 +176,7 @@ app.get("/blogs", async (req, res)=>{
 
     await newsOppmodel.find({}, function(err,blogdata){
         if(err) throw err;
-        console.log(err)
+        console.log(err,blogdata)
 
         res.render( "blogs.ejs", {blogdata});
     });
@@ -204,12 +202,12 @@ app.get("/sfresearch", async (req, res)=>{
     await studentResearchmodel.find({}, function(err,data){
         if(err) throw err;
         sdata = data;
-        console.log(err)
+        console.log(err,data)
     });
     await fundedResearchmodel.find({}, function(err,data){
         if(err) throw err;
         fdata = data;
-        console.log(err)
+        console.log(err,fdata)
     });
 
     res.render( "sfresearch.ejs", {fdata, sdata});
@@ -243,7 +241,7 @@ app.get("/subscribers", (req, res)=>{
 
     subscribemodel.find({}, function (err, data){
         if(err) throw err;
-        console.log(err)
+        console.log(err,data)
         res.render("subscribers.ejs", {data})
     });
 });
@@ -254,7 +252,7 @@ app.post('/subscribe',json,urlparser, (req, res)=>{
 
     subscribemodel.create({email:email}, function (err, data){
         if(err) throw err;
-        console.log(err)
+        console.log(err,data)
     });
     res.redirect("index");
 
@@ -266,7 +264,7 @@ app.post('/subscribe',json,urlparser, (req, res)=>{
 app.get("/client_contacts", (req, res)=>{
     contactmodel.find({}, function (err, data){
         if(err) throw err;
-        console.log(err)
+        console.log(err,data)
         res.render("client_contacts.ejs", {data});
     });
 });
@@ -284,7 +282,7 @@ app.post('/trainingDate',json,urlparser, (req,res) =>{
 
     trainingmodel.update({trainingDate:trainD}, function (err, data){
         if(err) throw err;
-        console.log(err)
+        console.log(err,data)
     });
     res.render("success.ejs",{success});
     
@@ -293,7 +291,7 @@ app.get('/training', async (req, res)=>{
 
     await trainingmodel.findOne({}, function(err,data){
         if(err) throw err;
-        console.log(err)
+        console.log(err,data)
         res.render( "training.ejs", {data});
     }); 
 });
@@ -322,37 +320,21 @@ var storage  = multer.diskStorage({
     }
   });
   var upload = multer({ storage: storage});
-//   var upload = multer({ dest: 'uploads/' })
   
 
 //UPDATE NEWS AND OPPORTUNITY PAGE
-app.post('/updateBlog', upload.single('avatar'),json,urlparser, (req,res,next) =>{
-  
+app.post('/updateBlog', upload.single('file'),json,urlparser, (req,res) =>{
     var btitle = req.body.blogtitle;
     var bmessage = req.body.blogmessage;
-    var imagepath = req.file.path;  
-    
-//   <img alt="" height="250px" width="100%" src="<%= success.replace(/"/g,"") %>">
+    var imagepath = "uploads/" + req.file.filename; 
 
-    image2base64(imagepath) // you can also to use url
-    .then(
-        (response) => {  
-           var success = "News and Opportunity Page added..."
-           var new_response = "data:image/png;base64," + response;
-            newsOppmodel.create({title:btitle, message:bmessage, blogimage:new_response}, function (err, data){
-                if(err) throw err;
-                console.log(err)
-            });
-            res.render("success.ejs",{success});
-          
-        }
-    )
-    .catch(
-        (error) => {
-            console.log(error); //Exepection error....
-        }
-    )
-  
+    var success = "News and Opportunity Page added..."
+    newsOppmodel.create({title:btitle, message:bmessage, blogimage:imagepath}, function (err, data){
+        if(err) throw err;
+        console.log(err,data)
+    });
+    res.render("success.ejs",{success});
+    
 });
 
 app.get('/news/:id', async (req,res)=>{
@@ -361,7 +343,7 @@ app.get('/news/:id', async (req,res)=>{
 
     await newsOppmodel.findById(id, function(err,data){
         if(err) throw err;
-        console.log(err)
+        console.log(err,data)
         res.render('news-one.ejs',{data});
     });
     
@@ -374,7 +356,7 @@ app.get("/studentResearch", async (req,res)=>{
 
     await studentResearchmodel.find({}, function(err,data){
         if(err) throw err;
-        console.log(err)
+        console.log(err,data)
 
         res.render( "studentResearch.ejs", {data});
     });
@@ -395,7 +377,7 @@ app.post('/StudentResearch',json,urlparser, (req,res) =>{
         message:message
     }, function (err, data){
         if(err) throw err;
-        console.log(err)
+        console.log(err,data)
     });
     res.render("success.ejs",{success});
     
@@ -406,7 +388,7 @@ app.get('/StudentResearch/:id', async (req,res)=>{
 
     await studentResearchmodel.findById(id, function(err,data){
         if(err) throw err;
-        console.log(err)
+        console.log(err,data)
         res.render('student-one.ejs',{data});
     });
     
@@ -418,7 +400,7 @@ app.get("/fundedResearch", async (req,res)=>{
 
     await fundedResearchmodel.find({}, function(err,data){
         if(err) throw err;
-        console.log(err)
+        console.log(err,data)
 
         res.render( "fundedResearch.ejs", {data});
     });
@@ -428,34 +410,22 @@ app.post('/fundedResearch', upload.single('file'), json,urlparser, (req,res) =>{
     var title = req.body.fundedTitle;
     var message = req.body.message;
     var researcher = req.body.researcher; 
-    var imagepath = req.file.path; 
+    var imagepath = "uploads/" + req.file.filename; 
 
 
     console.log(title, message, researcher);
 
-    image2base64(imagepath) // you can also to use url
-    .then(
-        (response) => {  
-            var success = "Funded Research Page added...";
-            var new_response = "data:image/png;base64," + response;
-            fundedResearchmodel.create(
-                {title:title, 
-                 researcherName: researcher, 
-                 message:message,
-                 imagepath:new_response
-            }, function (err, data){
-                if(err) throw err;
-                console.log(err)
-            }); 
-            res.render("success.ejs",{success});
-          
-        }
-    )
-    .catch(
-        (error) => {
-            console.log(error); //Exepection error....
-        }
-    )
+    var success = "Funded Research Page added..."
+    fundedResearchmodel.create(
+        {title:title, 
+         researcherName: researcher, 
+         message:message,
+         imagepath:imagepath
+    }, function (err, data){
+        if(err) throw err;
+        console.log(err,data)
+    }); 
+    res.render("success.ejs",{success});
     
 });
 
@@ -465,7 +435,7 @@ app.get('/fundedResearch/:id', async (req,res)=>{
 
     await fundedResearchmodel.findById(id, function(err,data){
         if(err) throw err;
-        console.log(err)
+        console.log(err,data)
         res.render('funded-one.ejs',{data});
     });
     
