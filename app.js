@@ -34,7 +34,7 @@ app.get('/index', async function(req, res){
 
     await newsOppmodel.find({}, function(err,blogdata){
          if(err) throw err;
-         console.log(err,blogdata)
+         console.log(err)
  
          res.render( "index.ejs", {blogdata});
      });
@@ -45,7 +45,7 @@ app.get('/index', async function(req, res){
 
     await newsOppmodel.find({}, function(err,blogdata){
          if(err) throw err;
-         console.log(err,blogdata)
+         console.log(err)
  
          res.render( "index.ejs", {blogdata});
      });
@@ -64,7 +64,7 @@ app.get('/gallery', (req, res)=>{
 app.get('/news' , async (req, res)=>{
     await newsOppmodel.find({}, function(err,blogdata){
         if(err) throw err;
-        console.log(err,blogdata)
+        console.log(err)
 
         res.render( "news.ejs", {blogdata});
     });
@@ -176,7 +176,7 @@ app.get("/blogs", async (req, res)=>{
 
     await newsOppmodel.find({}, function(err,blogdata){
         if(err) throw err;
-        console.log(err,blogdata)
+        console.log(err)
 
         res.render( "blogs.ejs", {blogdata});
     });
@@ -202,12 +202,12 @@ app.get("/sfresearch", async (req, res)=>{
     await studentResearchmodel.find({}, function(err,data){
         if(err) throw err;
         sdata = data;
-        console.log(err,data)
+        console.log(err)
     });
     await fundedResearchmodel.find({}, function(err,data){
         if(err) throw err;
         fdata = data;
-        console.log(err,fdata)
+        console.log(err)
     });
 
     res.render( "sfresearch.ejs", {fdata, sdata});
@@ -264,7 +264,7 @@ app.post('/subscribe',json,urlparser, (req, res)=>{
 app.get("/client_contacts", (req, res)=>{
     contactmodel.find({}, function (err, data){
         if(err) throw err;
-        console.log(err,data)
+        console.log(err)
         res.render("client_contacts.ejs", {data});
     });
 });
@@ -361,7 +361,7 @@ app.get('/news/:id', async (req,res)=>{
 
     await newsOppmodel.findById(id, function(err,data){
         if(err) throw err;
-        console.log(err,data)
+        console.log(err)
         res.render('news-one.ejs',{data});
     });
     
@@ -374,7 +374,7 @@ app.get("/studentResearch", async (req,res)=>{
 
     await studentResearchmodel.find({}, function(err,data){
         if(err) throw err;
-        console.log(err,data)
+        console.log(err)
 
         res.render( "studentResearch.ejs", {data});
     });
@@ -395,7 +395,7 @@ app.post('/StudentResearch',json,urlparser, (req,res) =>{
         message:message
     }, function (err, data){
         if(err) throw err;
-        console.log(err,data)
+        console.log(err)
     });
     res.render("success.ejs",{success});
     
@@ -406,7 +406,7 @@ app.get('/StudentResearch/:id', async (req,res)=>{
 
     await studentResearchmodel.findById(id, function(err,data){
         if(err) throw err;
-        console.log(err,data)
+        console.log(err)
         res.render('student-one.ejs',{data});
     });
     
@@ -418,7 +418,7 @@ app.get("/fundedResearch", async (req,res)=>{
 
     await fundedResearchmodel.find({}, function(err,data){
         if(err) throw err;
-        console.log(err,data)
+        console.log(err)
 
         res.render( "fundedResearch.ejs", {data});
     });
@@ -453,7 +453,7 @@ app.get('/fundedResearch/:id', async (req,res)=>{
 
     await fundedResearchmodel.findById(id, function(err,data){
         if(err) throw err;
-        console.log(err,data)
+        console.log(err)
         res.render('funded-one.ejs',{data});
     });
     
