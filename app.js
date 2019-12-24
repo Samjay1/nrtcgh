@@ -27,7 +27,7 @@ app.set("view engine", 'ejs');
 var path2 = "mongodb://localhost:27017/nrtc_test";
 var path1= 'mongodb://nrtcdb1:nrtcdb1@ds031157.mlab.com:31157/nrtcdb';
 
-mongo.connect(path2);
+mongo.connect(path1);
 
 
 
