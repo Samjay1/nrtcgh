@@ -201,16 +201,20 @@ app.get("/sfresearch", async (req, res)=>{
     var fdata;
     await studentResearchmodel.find({}, function(err,data){
         if(err) throw err;
-        sdata = data;
-        console.log(err)
+        sdata = data; 
+         fundedResearchmodel.find({}, function(err,data){
+            if(err) throw err;
+            fdata = data;
+            res.render( "sfresearch.ejs", {fdata, sdata});
+        });
     });
-    await fundedResearchmodel.find({}, function(err,data){
-        if(err) throw err;
-        fdata = data;
-        console.log(err)
-    });
+    // await fundedResearchmodel.find({}, function(err,data){
+    //     if(err) throw err;
+    //     fdata = data;
+    //     // console.log(err)
+    // });
 
-    res.render( "sfresearch.ejs", {fdata, sdata});
+    // res.render( "sfresearch.ejs", {fdata, sdata});
 });
 
 //DELETE STUDENT RESEARCH
