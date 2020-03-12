@@ -28,8 +28,6 @@ var path1= 'mongodb://nrtcdb1:nrtcdb1@ds031157.mlab.com:31157/nrtcdb';
 mongo.connect(path1);
 
 
-
-
 app.get('/index', async function(req, res){
 
     await newsOppmodel.find({}, function(err,blogdata){
@@ -327,7 +325,7 @@ var storage  = multer.diskStorage({
   
 
 //UPDATE NEWS AND OPPORTUNITY PAGE
-app.post('/updateBlog', upload.single('file'),json,urlparser, (req,res) =>{
+app.post('/updateBlog',json,urlparser, (req,res) =>{
     var btitle = req.body.blogtitle;
     var bmessage = req.body.blogmessage;
     var imagepath = req.file.path; 
@@ -341,7 +339,7 @@ image2base64(imagepath) // you can also to use url
             var success = "News and Opportunity Page added..."
             newsOppmodel.create({title:btitle, message:bmessage, blogimage:new_response}, function (err, data){
                 if(err) throw err;
-                console.log(err)
+                // console.log(new_response)
             });
             res.render("success.ejs",{success});
 
@@ -428,7 +426,7 @@ app.get("/fundedResearch", async (req,res)=>{
     });
  
 })
-app.post('/fundedResearch', upload.single('file'), json,urlparser, (req,res) =>{
+app.post('/fundedResearch', json,urlparser, (req,res) =>{
     var title = req.body.fundedTitle;
     var message = req.body.message;
     var researcher = req.body.researcher; 
