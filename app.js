@@ -26,16 +26,16 @@ var path2 = "mongodb://localhost:27017/nrtc_test";
 var link = 'mongodb+srv://samjay:Drflubber@nrtcgh.auhqx.mongodb.net/nrtchdb?retryWrites=true&w=majority';
 
 mongo.set('useUnifiedTopology', true); 
-mongo.connect(link, { useNewUrlParser: true })
-// mongo.connect(link, { useNewUrlParser: true }, function(err, db) {
-//     if(err) {
-//         console.log("\t\t\tMY-ERROR:" + err);
-//     }
-//     else {
-//         console.log('connected to ' + link);
-//         // db.close();
-//     }}
-//     );
+// mongo.connect(link, { useNewUrlParser: true })
+mongo.connect(link, { useNewUrlParser: true }, function(err, db) {
+    if(err) {
+        console.log("\t\t\tMY-ERROR:" + err);
+    }
+    else {
+        console.log('connected to ' + link);
+        // db.close();
+    }}
+    );
 
 
 app.get('/index', async function(req, res){
