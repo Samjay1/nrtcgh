@@ -22,10 +22,20 @@ var json = bodyparser.json();
 app.use(express.static('public'));
 app.set("view engine", 'ejs'); 
 
-var path2 = "mongodb://localhost:27017/nrtc_test";
-var path1= 'mongodb://nrtcdb1:nrtcdb1@ds031157.mlab.com:31157/nrtcdb';
+var path2 = "mongodb://localhost:27017/nrtc_test"; 
+var link = 'mongodb+srv://samjay:Drflubber@nrtcgh.auhqx.mongodb.net/nrtchdb?retryWrites=true&w=majority';
 
-mongo.connect(path1);
+mongo.set('useUnifiedTopology', true); 
+mongo.connect(link, { useNewUrlParser: true })
+// mongo.connect(link, { useNewUrlParser: true }, function(err, db) {
+//     if(err) {
+//         console.log("\t\t\tMY-ERROR:" + err);
+//     }
+//     else {
+//         console.log('connected to ' + link);
+//         // db.close();
+//     }}
+//     );
 
 
 app.get('/index', async function(req, res){
@@ -85,7 +95,7 @@ app.post('/contact',json,urlparser, (req, res)=>{
 
     contactmodel.create({name:name, email:email, phone:phone, message:message}, function(err,data){
         if(err) throw err;
-        console.log(err,data)
+        console.log(data)
     })
 
     res.redirect("/");
