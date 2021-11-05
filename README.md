@@ -4,4 +4,4 @@ This Website is the first Display point for interested persons and contains brie
 
 Direct link : http://www.nrtcgh.com/
 
-![alt text](https://github.com/Samjay1/images/blob/master/nrtc.png)
+<!-- ![alt text](https://github.com/Samjay1/images/blob/master/nrtc.png) -->
